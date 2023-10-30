@@ -1,31 +1,35 @@
+from Team import Team
+
+from pprint import pprint
+from typing import List
+
 import numpy as np
 import pandas as pd
-from pprint import pprint
 import requests
 
 
 class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
 
-    # Team data
-    _team_data: pd.DataFrame = pd.DataFrame()
+    # Team data (Team.name: str -> Team)
+    _teams: dict[Team] = {}
 
     # Fantasy PL specific data
-    _events_data: pd.DataFrame = pd.DataFrame()
-    _game_settings_data: pd.DataFrame = pd.DataFrame()
-    _phases: pd.DataFrame = pd.DataFrame()
+    _events_data: pd.DataFrame = None
+    _game_settings_data: pd.DataFrame = None
+    _phases: pd.DataFrame = None
 
     # Player data
-    _elements: pd.DataFrame = pd.DataFrame()
-    _element_stats: pd.DataFrame = pd.DataFrame()
-    _element_types: pd.DataFrame = pd.DataFrame()
+    _elements: pd.DataFrame = None
+    _element_stats: pd.DataFrame = None
+    _element_types: pd.DataFrame = None
 
-    _match_data: pd.DataFrame = pd.DataFrame()
-    _player_data: pd.DataFrame = pd.DataFrame()
+    _match_data: pd.DataFrame = None
+    _player_data: pd.DataFrame = None
 
     FANTASY_BASE_URL: str = "https://fantasy.premierleague.com/api/"
 
-    ### Imports:
+    ### General imports:
 
     def import_from_api(self, user_name: str = None, password: str = None):
         """Import data from premier leaguer fantasy API. If no log in details are provided, it will be retrieved
@@ -42,21 +46,31 @@ class Statistics:
         request = requests.get(self.FANTASY_BASE_URL + "bootstrap-static/")
 
         if request.status_code != 200:
-            raise Exception(f"Request failed with status code {request.status_code}")
+            raise Exception(
+                f"Request to import static data failed with status code {request.status_code}"
+            )
 
         data = request.json()
-        print(f"All static data collections: {data.keys()}")
-        self._team_data = pd.json_normalize(data["teams"])
+        self._create_teams(pd.json_normalize(data["teams"]))
+
+    ### Initializations:
+    def _create_teams(self, data: pd.DataFrame):
+        """Create teams from data"""
+
+        for index, row in data.iterrows():
+            team = Team(row)
+            self._teams[team.name] = team
 
     ### Team functions:
 
-    def get_teams(self) -> pd.DataFrame:
+    def get_teams(self) -> dict[Team]:
         """Return all team data. If no data is present, it will be imported from the API"""
 
-        if self._team_data.empty:
-            self.import_static_data()
+        if not self._teams:
+            print(f"No team data present. Importing from API")
+            self.import_data()
 
-        return self._team_data
+        return self._teams
 
     def get_standings(self) -> pd.DataFrame:
         """Return the current standings with columns: id, name, played, position, points"""
@@ -71,5 +85,6 @@ class Statistics:
 
 if __name__ == "__main__":
     stats = Statistics()
+
     stats.import_static_data()
     print(stats.get_standings())
