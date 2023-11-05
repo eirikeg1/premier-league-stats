@@ -10,6 +10,7 @@ class Team:
 
     def __init__(
         self,
+        pandas_data: pd.Series = None,
         id: int = None,
         name: str = None,
         played: int = None,
@@ -17,20 +18,19 @@ class Team:
         points: int = None,
         strength: int = None,
         players: pd.DataFrame = None,
-        data_frame: pd.Series = None,
     ):
         """Create a team object. Can be initialized with either a Pandas Series or the individual parameters"""
-        if data_frame:
-            self._id = data_frame["id"]
-            self._name = data_frame["name"]
-            self._played = data_frame["played"]
-            self._position = data_frame["position"]
-            self._points = data_frame["points"]
-            self._strength = data_frame["strength"]
+        
+        if pandas_data is not None:
+            self.id = pandas_data["id"]
+            self.name = pandas_data["name"]
+            self.played = pandas_data["played"]
+            self.position = pandas_data["position"]
+            self.points = pandas_data["points"]
+            self.strength = pandas_data["strength"]
         else:
-            assert all(
-                id, name, played, position, points, strength
-            ), "Missing parameters when trying to create team"
+            print("data_frame is None")
+            assert all([id, name, played, position, points, strength]), "Missing parameters when trying to create team"
             self.id = id
             self.name = name
             self.played = played
@@ -93,8 +93,8 @@ class Team:
             case _:
                 raise KeyError(f"No such key: {key}")
 
-    def iter_matches(self) -> Generator[pd.Series]:
-        """Iterate over all matches"""
+    def iter_match(self) -> Generator[pd.Series, None, None]:
+        """Iterate over matches through a generator"""
         return (match for match in self.matches.iterrows())
 
     def get_matches(self) -> pd.DataFrame:
