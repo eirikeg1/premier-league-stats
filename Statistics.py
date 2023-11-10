@@ -1,3 +1,5 @@
+import time
+from LoadingAnimator import LoadingAnimator
 from Team import Team
 
 from pprint import pprint
@@ -32,6 +34,7 @@ class Statistics:
     _player_data: pd.DataFrame = None
 
     FANTASY_BASE_URL: str = "https://fantasy.premierleague.com/api/"
+    FIXTURES_URL = f"https://onefootball.com/en/competition/premier-league-9/fixtures"
     
     def __init__(self):
         
