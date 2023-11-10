@@ -87,8 +87,8 @@ class Statistics:
              },
         )
        
-        self._standings.sort_values("points", ascending=False, inplace=True)
-        self._standings.reset_index(drop=True, inplace=True)
+        self._standings.sort_values(by=["points", "name"], ascending=[False, True], inplace=True)
+        self._standings.index = np.arange(1, len(self._standings) + 1)
 
 
 

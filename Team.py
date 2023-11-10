@@ -45,13 +45,14 @@ class Team:
         return f"{self.name} (matches simulated: {len(self.matches)})"
 
     def __lt__(self, other):
+        if self.points == other.points:
+            return self.name < other.name
         return self.points < other.points
 
     def __gt__(self, other):
+        if self.points == other.points:
+            return self.name > other.name
         return self.points > other.points
-
-    def __eq__(self, other):
-        return self.points == other.points
 
     def __getitem__(self, item: str) -> str | int | pd.DataFrame:
         """Get item from team. Valid items are: id, name, played, position, points, strength, matches"""
