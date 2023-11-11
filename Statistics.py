@@ -119,4 +119,10 @@ if __name__ == "__main__":
     stats = Statistics()
 
     stats.import_static_data()
+    
+    animator = LoadingAnimator(animation_speed=40)
+    
+    for _ in range(100000000):
+        animator.print_animaion_every_x()
+        time.sleep(0.001)
     print(stats.get_standings())
