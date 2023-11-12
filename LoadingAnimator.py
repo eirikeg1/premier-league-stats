@@ -1,5 +1,6 @@
 import sys
 import time
+from typing import List
 
 
 class LoadingAnimator:
@@ -35,7 +36,7 @@ class LoadingAnimator:
         ". . . . . . . o O o . . . . . .",
     ]
     
-    def __init__(self, animation_speed = None, animation_pattern = None):
+    def __init__(self, animation_speed: int = None, animation_pattern: List[str] = None):
         if animation_speed:
             self._animation_speed = animation_speed  
         if animation_pattern:    
@@ -48,8 +49,10 @@ class LoadingAnimator:
         self._counter += 1
         print(self._animation_pattern[self._counter % len(self._animation_pattern)], end="\r")
 
-    def print_animaion_every_x(self):
+    def print_animation_every_x(self, animation_speed = None):
         """Animate a loading animation which prints every 1/animation_speed function calls"""
+        if not animation_speed:
+            animation_speed = self._animation_speed
         self._counter += 1
         if self._counter % self._animation_speed == 0:
             print(self._animation_pattern[self._position % len(self._animation_pattern)], end="\r")

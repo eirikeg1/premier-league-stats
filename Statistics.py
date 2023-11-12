@@ -65,15 +65,16 @@ class Statistics:
             raise Exception(
                 f"Request to import static data failed with status code {request.status_code}"
             )
-
-        data = request.json()
-        self._create_teams(pd.json_normalize(data["teams"]))
+        data = pd.json_normalize(request.json())
+        
+        self._create_teams(data["teams"])
+        self._create_standings()
 
     ### Creating datastructures from data:
     def _create_teams(self, data: pd.DataFrame):
         """Create teams from data"""
 
-        for index, row in data.iterrows():
+        for _, row in data.iterrows():
             team = Team(pandas_data=row)
             self._teams[team.name] = team
 
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     
     animator = LoadingAnimator(animation_speed=40)
     
-    for _ in range(100000000):
-        animator.print_animaion_every_x()
-        time.sleep(0.001)
+    for _ in range(1000000):
+        animator.print_animation_every_x()
+        #time.sleep(0.001)
     print(stats.get_standings())
