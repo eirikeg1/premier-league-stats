@@ -19,7 +19,7 @@ class Team:
         strength: int = None,
         players: pd.DataFrame = None,
     ):
-        """Create a team object. Can be initialized with either a Pandas Series or the individual parameters"""
+        """Team can be initialized with either a Pandas Series or the individual parameters"""
         
         if pandas_data is not None:
             self.id = pandas_data["id"]
@@ -56,7 +56,7 @@ class Team:
 
     def __getitem__(self, item: str) -> str | int | pd.DataFrame:
         """Get item from team. Valid items are: id, name, played, position, points, strength, matches"""
-        match (item):
+        match item:
             case "id":
                 return self.id
             case "name":
@@ -76,7 +76,7 @@ class Team:
 
     def __setitem__(self, key: str, value):
         """Set item in team. Valid items are: id, name, played, position, points, strength, matches"""
-        match (key):
+        match key:
             case "id":
                 self.id = value
             case "name":
@@ -95,7 +95,7 @@ class Team:
                 raise KeyError(f"No such key: {key}")
 
     def iter_match(self) -> Generator[pd.Series, None, None]:
-        """Iterate over matches through a generator"""
+        """Create a generator over matches"""
         return (match for match in self.matches.iterrows())
 
     def get_matches(self) -> pd.DataFrame:

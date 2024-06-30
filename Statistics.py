@@ -48,16 +48,24 @@ class Statistics:
     ### Importing data:
 
     def import_from_api(self, user_name: str = None, password: str = None):
-        """Import data from premier leaguer fantasy API. If no log in details are provided, it will be retrieved
-        from the environment variables <fantasy_username> and <fantasy_password>"""
+        """
+        Import data from premier leaguer fantasy API. If no log in details are provided, it will 
+        be retrieved from the environment variables <fantasy_username> and <fantasy_password>
+        """
         raise NotImplementedError
 
     def import_from_file(self, file: str):
-        """Import data from a file. The file should be a json file with the same structure as the API response"""
+        """
+        Import data from a file. The file should be a json file with the same structure as the API
+        response
+        """
         return NotImplementedError
 
     def import_static_data(self):
-        """Import static data from premier league fantasy API. Static data is freezed from before game-week 1"""
+        """
+        Import static data from premier league fantasy API. Static data is freezed from before
+        game-week 1
+        """
 
         request = requests.get(self.FANTASY_BASE_URL + "bootstrap-static/")
 
@@ -65,6 +73,7 @@ class Statistics:
             raise Exception(
                 f"Request to import static data failed with status code {request.status_code}"
             )
+
         data = pd.json_normalize(request.json())
         
         self._create_teams(data["teams"])
