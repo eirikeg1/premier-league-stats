@@ -14,24 +14,24 @@ class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
 
     # Team data (Team.name: str -> Team)
-    _teams: dict[Team] = {}
-    _standings: pd.DataFrame = pd.DataFrame()
+    teams: dict[Team] = {}
+    standings: pd.DataFrame = pd.DataFrame()
 
     # Fantasy PL specific data
-    _events_data: pd.DataFrame = None
-    _game_settings_data: pd.DataFrame = None
-    _phases: pd.DataFrame = None
+    events_data: pd.DataFrame = None
+    game_settings_data: pd.DataFrame = None
+    phases: pd.DataFrame = None
     
     # Match data
     simulated_game_weeks: int = 0
 
     # Player data
-    _elements: pd.DataFrame = None
-    _element_stats: pd.DataFrame = None
-    _element_types: pd.DataFrame = None
+    elements: pd.DataFrame = None
+    element_stats: pd.DataFrame = None
+    element_types: pd.DataFrame = None
 
-    _match_data: pd.DataFrame = None
-    _player_data: pd.DataFrame = None
+    match_data: pd.DataFrame = None
+    player_data: pd.DataFrame = None
 
     FANTASY_BASE_URL: str = "https://fantasy.premierleague.com/api/"
     FIXTURES_URL = f"https://onefootball.com/en/competition/premier-league-9/fixtures"
@@ -80,28 +80,28 @@ class Statistics:
         self._create_standings()
 
     ### Creating datastructures from data:
-    def _create_teams(self, data: pd.DataFrame):
+    def _create_teams(self, data: pd.Series):
         """Create teams from data"""
-
-        for _, row in data.iterrows():
+        print(f"keys: {data.keys()}")
+        for _, row in data.items():
             team = Team(pandas_data=row)
-            self._teams[team.name] = team
+            self.teams[team.name] = team
 
     def _create_standings(self):
-        if not self._teams:
+        if not self.teams:
             raise Exception("No team data present. Please import data first")
 
-        self._standings = pd.DataFrame.from_dict(
-            {"name": [team.name for team in self._teams.values()],
-             "played": [team.played for team in self._teams.values()],
-             "position": [team.position for team in self._teams.values()],
-             "points": [team.points for team in self._teams.values()],
-             "strength": [team.strength for team in self._teams.values()]
+        self.standings = pd.DataFrame.from_dict(
+            {"name": [team.name for team in self.teams.values()],
+             "played": [team.played for team in self.teams.values()],
+             "position": [team.position for team in self.teams.values()],
+             "points": [team.points for team in self.teams.values()],
+             "strength": [team.strength for team in self.teams.values()]
              },
         )
        
-        self._standings.sort_values(by=["points", "name"], ascending=[False, True], inplace=True)
-        self._standings.index = np.arange(1, len(self._standings) + 1)
+        self.standings.sort_values(by=["points", "name"], ascending=[False, True], inplace=True)
+        self.standings.index = np.arange(1, len(self.standings) + 1)
 
 
 
@@ -110,19 +110,19 @@ class Statistics:
     def get_teams(self) -> dict[Team]:
         """Return all team data. If no data is present, it will be imported from the API"""
 
-        if self._standings.empty:
+        if self.standings.empty:
             print(f"No team data present. Importing from API")
             self.import_static_data()
 
-        return self._teams
+        return self.teams
 
     def get_standings(self) -> pd.DataFrame:
         """Return the current standings with columns: id, name, played, position, points"""
 
-        if self._standings.empty:
+        if self.standings.empty:
             self.import_static_data()
             
-        return self._standings
+        return self.standings
 
 
 if __name__ == "__main__":
