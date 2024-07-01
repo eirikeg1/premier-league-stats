@@ -3,7 +3,9 @@ import pandas as pd
 
 
 class Team:
-    """Class for storing and manipulating team data"""
+    """
+    Class for storing and manipulating team data
+    """
 
     matches = pd.DataFrame()
     players = pd.DataFrame()
@@ -19,7 +21,9 @@ class Team:
         strength: int = None,
         players: pd.DataFrame = None,
     ):
-        """Team can be initialized with either a Pandas Series or the individual parameters"""
+        """
+        Team can be initialized with either a Pandas Series or the individual parameters
+        """
         
         if pandas_data is not None:
             self.id = pandas_data["id"]
@@ -55,7 +59,9 @@ class Team:
         return self.points > other.points
 
     def __getitem__(self, item: str) -> str | int | pd.DataFrame:
-        """Get item from team. Valid items are: id, name, played, position, points, strength, matches"""
+        """
+        Get item from team. Valid items are: id, name, played, position, points, strength, matches
+        """
         match item:
             case "id":
                 return self.id
@@ -75,7 +81,9 @@ class Team:
                 raise KeyError(f"No such key: {item}")
 
     def __setitem__(self, key: str, value):
-        """Set item in team. Valid items are: id, name, played, position, points, strength, matches"""
+        """
+        Set item in team. Valid items are: id, name, played, position, points, strength, matches
+        """
         match key:
             case "id":
                 self.id = value

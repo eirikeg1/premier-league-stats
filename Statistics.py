@@ -14,8 +14,8 @@ class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
 
     # Team data (Team.name: str -> Team)
-    teams: dict[Team] = {}
-    standings: pd.DataFrame = pd.DataFrame()
+    teams: dict[Team] = None
+    standings: pd.DataFrame = None
 
     # Fantasy PL specific data
     events_data: pd.DataFrame = None
@@ -38,6 +38,9 @@ class Statistics:
     
     def __init__(self):
         
+        self.teams = {}
+        self.simulated_game_weeks = 0 # reset to make unique for each object
+
         ### Import initial team and player data from before game-week 1
         self.import_static_data()
         self._create_standings()
@@ -75,9 +78,9 @@ class Statistics:
             )
 
         # data = pd.json_normalize(request.json())
-        data = request.json()
+        self.static_data = request.json()
 
-        self._create_teams(data["teams"])
+        self._create_teams(self.static_data["teams"])
         self._create_standings()
 
 
