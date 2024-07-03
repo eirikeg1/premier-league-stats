@@ -1,6 +1,5 @@
 import requests
 
-
 class PremierLeagueFantasyAPI:
 
     FANTASY_BASE_URL: str = "https://fantasy.premierleague.com/api/"

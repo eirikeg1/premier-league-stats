@@ -1,5 +1,5 @@
 from typing import List
-from premier_league_stats.classes.News import News
+from src.premier_league_stats.data_classes.News import News
 
 
 class Player:

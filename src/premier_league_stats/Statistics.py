@@ -1,8 +1,8 @@
 from collections import Counter
 import time
-from api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
-from premier_league_stats.classes.Team import Team
-from premier_league_stats.utils.LoadingAnimator import LoadingAnimator
+from src.premier_league_stats.api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
+from src.premier_league_stats.data_classes.Team import Team
+from src.premier_league_stats.utils.LoadingAnimator import LoadingAnimator
 
 
 from pprint import pprint
