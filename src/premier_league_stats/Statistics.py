@@ -1,15 +1,14 @@
-from collections import Counter
-import time
 from api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
 from data_classes.Team import Team
 from utils.LoadingAnimator import LoadingAnimator
-
 
 from pprint import pprint
 from typing import List
 
 import numpy as np
 import pandas as pd
+
+
 class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
 

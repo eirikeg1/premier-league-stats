@@ -22,6 +22,9 @@ class Player:
             self.squad_number = squad_number
 
         self.news: List[News] = []
+        self.name = name
+        self.team = team
+        self.photo = photo
 
         # Initialize stats to 0
         self.set_stats(
