@@ -74,7 +74,7 @@ class Statistics:
         
 
         # data = pd.json_normalize(request.json())
-        self.static_data = self.fantasy_api.fetch_json()
+        self.static_data = self.fantasy_api.fetch_static_json()
 
         self.create_teams(self.static_data["teams"])
         self.create_standings()
