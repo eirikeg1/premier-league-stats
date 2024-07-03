@@ -1,6 +1,8 @@
 from typing import Generator
 import pandas as pd
 
+from data_classes.Player import Player
+
 
 class Team:
     """
@@ -22,7 +24,7 @@ class Team:
         Team can be initialized with either a Pandas Series or the individual parameters
         """
         self.matches = pd.DataFrame()
-        self.players = pd.DataFrame()
+        self.players = []
         
         if pandas_data is not None:
             self.id = pandas_data["id"]
@@ -42,7 +44,7 @@ class Team:
             self.strength = strength
 
         if players:
-            self.players = players
+            self.players = [player for player in players.iterrows()]
 
     def __str__(self):
         return f"{self.name} (matches simulated: {len(self.matches)})"
@@ -111,17 +113,17 @@ class Team:
     def add_player(self, player: dict):
         """Add player to team"""
         
-        new_player = pd.Series(player)
+        new_player = Player(
+                id=player["id"],
+                name=player["web_name"],
+                team=player["team"],
+                position=None,
+                photo=player["photo"],
+                squad_number=player["squad_number"],
+                stats=player,
+            )
         
-        if self.players.empty:
-            self.players = pd.DataFrame(columns=new_player.index)
-    
-        # Add any new columns from the player dict that don't exist in the DataFrame
-        for col in new_player.index:
-            if col not in self.players.columns:
-                self.players[col] = None
-        
-        self.players.loc[len(self.players)] = new_player
+        self.players.append(new_player)
         
 
     def add_players(self, players: pd.DataFrame):

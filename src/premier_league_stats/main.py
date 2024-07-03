@@ -9,4 +9,6 @@ if __name__ == "__main__":
     
     for team in stats.teams_by_name.values():
         print(f"{team.name} : {len(team.players)} players")
+        for i in range(5):
+            print(f" * {team.players[i].name}")
     
