@@ -8,18 +8,18 @@ class Player:
             self,
             id: int,
             name: str,
-
+            team: int,
             position: str, # singlular_name in api
             photo: str|None = None,
-            shirt_number: int|None = None,
+            squad_number: int|None = None,
     ):
         """
         Initialize player. All stats are initialized with 0
         """
         self.id = id
         self.position = position
-        if shirt_number:
-            self.shirt_number = shirt_number
+        if squad_number:
+            self.squad_number = squad_number
 
         self.news: List[News] = []
 
