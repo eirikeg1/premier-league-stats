@@ -6,3 +6,4 @@ if __name__ == "__main__":
     
     print("Static data imported")
     print(f"Standings:\n{stats.standings}\n\n")
+    
