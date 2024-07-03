@@ -1,8 +1,8 @@
 from collections import Counter
 import time
-from src.premier_league_stats.api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
-from src.premier_league_stats.data_classes.Team import Team
-from src.premier_league_stats.utils.LoadingAnimator import LoadingAnimator
+from api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
+from data_classes.Team import Team
+from utils.LoadingAnimator import LoadingAnimator
 
 
 from pprint import pprint
@@ -10,7 +10,6 @@ from typing import List
 
 import numpy as np
 import pandas as pd
-
 class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
 
@@ -35,7 +34,7 @@ class Statistics:
     player_data: pd.DataFrame = None
 
     # API interfaces
-    premier_league_fantasy_data_api = PremierLeagueFantasyAPI()
+    fantasy_api = PremierLeagueFantasyAPI()
 
     
     def __init__(self):
@@ -76,7 +75,7 @@ class Statistics:
         
 
         # data = pd.json_normalize(request.json())
-        self.static_data = self.premier_league_fantasy_data_api.fetch_json()
+        self.static_data = self.fantasy_api.fetch_json()
 
         self.create_teams(self.static_data["teams"])
         self.create_standings()

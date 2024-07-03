@@ -1,4 +1,4 @@
-from src.premier_league_stats.Statistics import Statistics
+from Statistics import Statistics
 
 
 if __name__ == "__main__":

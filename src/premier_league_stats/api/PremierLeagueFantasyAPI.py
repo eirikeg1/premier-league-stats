@@ -1,7 +1,6 @@
 import requests
 
 class PremierLeagueFantasyAPI:
-
     FANTASY_BASE_URL: str = "https://fantasy.premierleague.com/api/"
     FIXTURES_URL = f"https://onefootball.com/en/competition/premier-league-9/fixtures"
 
