@@ -7,9 +7,6 @@ class Team:
     Class for storing and manipulating team data
     """
 
-    matches = pd.DataFrame()
-    players = pd.DataFrame()
-
     def __init__(
         self,
         pandas_data: pd.Series = None,
@@ -24,6 +21,8 @@ class Team:
         """
         Team can be initialized with either a Pandas Series or the individual parameters
         """
+        self.matches = pd.DataFrame()
+        self.players = pd.DataFrame()
         
         if pandas_data is not None:
             self.id = pandas_data["id"]
@@ -109,9 +108,9 @@ class Team:
     def get_matches(self) -> pd.DataFrame:
         return self.matches
 
-    def add_player(self, player: pd.Series):
+    def add_player(self, player: dict):
         """Add player to team"""
-        return NotImplementedError
+        self.players.add(pd.Series(player))
 
     def add_players(self, players: pd.DataFrame):
         """Add players to team"""

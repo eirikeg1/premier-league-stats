@@ -1,3 +1,4 @@
+from collections import Counter
 import time
 from LoadingAnimator import LoadingAnimator
 from Team import Team
@@ -14,8 +15,8 @@ class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
 
     # Team data (Team.name: str -> Team)
-    teams: dict[Team] = None
-    standings: pd.DataFrame = None
+    teams_by_name: dict[Team] = None
+    standings: pd.DataFrame = pd.DataFrame()
 
     # Fantasy PL specific data
     events_data: pd.DataFrame = None
@@ -38,12 +39,13 @@ class Statistics:
     
     def __init__(self):
         
-        self.teams = {}
+        self.teams_by_name = {}
+        self.teams_by_id = {}
         self.simulated_game_weeks = 0 # reset to make unique for each object
 
         ### Import initial team and player data from before game-week 1
         self.import_static_data()
-        self._create_standings()
+        self.create_standings()
         
         # TODO Import player data
         
@@ -80,35 +82,43 @@ class Statistics:
         # data = pd.json_normalize(request.json())
         self.static_data = request.json()
 
-        self._create_teams(self.static_data["teams"])
-        self._create_standings()
+        self.create_teams(self.static_data["teams"])
+        self.create_standings()
+
+        self.create_players(self.static_data["elements"])
 
 
     ### Creating datastructures from data:
 
-    def _create_teams(self, data: pd.Series):
+    def create_teams(self, data: pd.Series):
         """Create teams from data"""
 
         for team in data:
             team = Team(pandas_data=team)
-            self.teams[team.name] = team
+            self.teams_by_name[team.name] = team
+            self.teams_by_id[team.id] = team
 
-    def _create_standings(self):
-        if not self.teams:
+
+    def create_standings(self):
+        if not self.teams_by_name:
             raise Exception("No team data present. Please import data first")
 
         self.standings = pd.DataFrame.from_dict(
-            {"name": [team.name for team in self.teams.values()],
-             "played": [team.played for team in self.teams.values()],
-             "position": [team.position for team in self.teams.values()],
-             "points": [team.points for team in self.teams.values()],
-             "strength": [team.strength for team in self.teams.values()],
+            {"name": [team.name for team in self.teams_by_name.values()],
+             "played": [team.played for team in self.teams_by_name.values()],
+             "position": [team.position for team in self.teams_by_name.values()],
+             "points": [team.points for team in self.teams_by_name.values()],
+             "strength": [team.strength for team in self.teams_by_name.values()],
              },
         )
        
         self.standings.sort_values(by=["points", "name"], ascending=[False, True], inplace=True)
         self.standings.index = np.arange(1, len(self.standings) + 1)
 
+    def create_players(self, data):
+        print(f"Type: {type(data)}, {len(data)}")
+        for i, element in enumerate(data):
+            self.teams_by_id[element["team"]].add_player(element)
 
 
     ### Get data:
@@ -120,7 +130,8 @@ class Statistics:
             print(f"No team data present. Importing from API")
             self.import_static_data()
 
-        return self.teams
+        return self.teams_by_name
+    
 
     def get_standings(self) -> pd.DataFrame:
         """Return the current standings with columns: id, name, played, position, points"""
@@ -133,12 +144,12 @@ class Statistics:
 
 if __name__ == "__main__":
     stats = Statistics()
-
-    stats.import_static_data()
     
-    animator = LoadingAnimator(animation_speed=40)
+    print("Static data imported")
+    # print(f"Standings:\n{stats.standings}\n\n")
+    # animator = LoadingAnimator(animation_speed=40)
     
-    for _ in range(1000000):
-        animator.print_animation_every_x()
-        #time.sleep(0.001)
+    # for _ in range(1000000):
+    #     animator.print_animation_every_x()
+    #     #time.sleep(0.001)
         
