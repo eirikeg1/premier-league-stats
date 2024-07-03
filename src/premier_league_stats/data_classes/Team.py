@@ -110,7 +110,19 @@ class Team:
 
     def add_player(self, player: dict):
         """Add player to team"""
-        self.players.add(pd.Series(player))
+        
+        new_player = pd.Series(player)
+        
+        if self.players.empty:
+            self.players = pd.DataFrame(columns=new_player.index)
+    
+        # Add any new columns from the player dict that don't exist in the DataFrame
+        for col in new_player.index:
+            if col not in self.players.columns:
+                self.players[col] = None
+        
+        self.players.loc[len(self.players)] = new_player
+        
 
     def add_players(self, players: pd.DataFrame):
         """Add players to team"""
