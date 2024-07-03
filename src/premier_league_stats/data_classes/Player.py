@@ -12,7 +12,7 @@ class Player:
             id: int,
             name: str,
             team: int,
-            position: str = None, # singlular_name in api
+            position: str = None, # singular_position in api
             photo: str = None,
             squad_number: int = None,
             stats: pd.Series = None
@@ -29,7 +29,7 @@ class Player:
         self.name = name
         self.team = team
         self.photo = photo
-        self.stats = pd.Series()
+        self.stats = stats
     
     def set_stats(self, stats):
         self.stats = stats
