@@ -1,5 +1,6 @@
 from collections import Counter
 import time
+from api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
 from premier_league_stats.classes.Team import Team
 from premier_league_stats.utils.LoadingAnimator import LoadingAnimator
 
@@ -9,8 +10,6 @@ from typing import List
 
 import numpy as np
 import pandas as pd
-import requests
-
 
 class Statistics:
     """Class for storing and manipulating statistics for the premier league"""
@@ -35,8 +34,9 @@ class Statistics:
     match_data: pd.DataFrame = None
     player_data: pd.DataFrame = None
 
-    FANTASY_BASE_URL: str = "https://fantasy.premierleague.com/api/"
-    FIXTURES_URL = f"https://onefootball.com/en/competition/premier-league-9/fixtures"
+    # API interfaces
+    premier_league_fantasy_data_api = PremierLeagueFantasyAPI()
+
     
     def __init__(self):
         
@@ -73,15 +73,10 @@ class Statistics:
         game-week 1
         """
 
-        request = requests.get(self.FANTASY_BASE_URL + "bootstrap-static/")
-
-        if request.status_code != 200:
-            raise Exception(
-                f"Request to import static data failed with status code {request.status_code}"
-            )
+        
 
         # data = pd.json_normalize(request.json())
-        self.static_data = request.json()
+        self.static_data = self.premier_league_fantasy_data_api.fetch_json()
 
         self.create_teams(self.static_data["teams"])
         self.create_standings()
