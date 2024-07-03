@@ -1,7 +1,8 @@
 from collections import Counter
 import time
-from LoadingAnimator import LoadingAnimator
-from Team import Team
+from premier_league_stats.classes.Team import Team
+from premier_league_stats.utils.LoadingAnimator import LoadingAnimator
+
 
 from pprint import pprint
 from typing import List
@@ -116,7 +117,6 @@ class Statistics:
         self.standings.index = np.arange(1, len(self.standings) + 1)
 
     def create_players(self, data):
-        print(f"Type: {type(data)}, {len(data)}")
         for i, element in enumerate(data):
             self.teams_by_id[element["team"]].add_player(element)
 

@@ -3,4 +3,5 @@ matplotlib
 numpy
 pandas
 requests
-tensorflow
+torch
+torchvision

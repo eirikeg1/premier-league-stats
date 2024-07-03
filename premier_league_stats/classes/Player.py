@@ -1,5 +1,5 @@
 from typing import List
-from News import News
+from premier_league_stats.classes.News import News
 
 
 class Player:
@@ -285,5 +285,3 @@ class Player:
 
     def add_news(self, news, news_added):
         self.news.append(News(news, news_added))
-
-
