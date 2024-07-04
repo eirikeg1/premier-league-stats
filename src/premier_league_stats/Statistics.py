@@ -1,5 +1,6 @@
 from api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
 from data_classes.Team import Team
+from data_classes.Fixtures import Fixtures
 from utils.LoadingAnimator import LoadingAnimator
 
 from pprint import pprint
@@ -23,6 +24,7 @@ class Statistics:
     
     # Match data
     simulated_game_weeks: int = 0
+    fixtures: Fixtures = None
 
     # Player data
     elements: pd.DataFrame = None
@@ -46,32 +48,18 @@ class Statistics:
         self.import_static_data()
         self.create_standings()
         
+        self.import_fixtures_data()
+        
         # TODO Import player data
         
 
     ### Importing data:
-
-    def import_from_api(self, user_name: str = None, password: str = None):
-        """
-        Import data from premier leaguer fantasy API. If no log in details are provided, it will 
-        be retrieved from the environment variables <fantasy_username> and <fantasy_password>
-        """
-        raise NotImplementedError
-
-    def import_from_file(self, file: str):
-        """
-        Import data from a file. The file should be a json file with the same structure as the API
-        response
-        """
-        return NotImplementedError
 
     def import_static_data(self):
         """
         Import static data from premier league fantasy API. Static data is freezed from before
         game-week 1
         """
-
-        
 
         # data = pd.json_normalize(request.json())
         self.static_data = self.fantasy_api.fetch_static_json()
@@ -80,6 +68,22 @@ class Statistics:
         self.create_standings()
 
         self.create_players(self.static_data["elements"])
+        
+    def import_fixtures_data(self, user_name: str = None, password: str = None):
+        """
+        Import data from premier leaguer fantasy API. If no log in details are provided, it will 
+        be retrieved from the environment variables <fantasy_username> and <fantasy_password>
+        """
+        
+        self.fixtures_data = self.fantasy_api.fetch_fixtures_json()
+        self.fixtures = Fixtures(self.fixtures_data)
+
+    def import_from_file(self, file: str):
+        """
+        Import data from a file. The file should be a json file with the same structure as the API
+        response
+        """
+        return NotImplementedError
 
 
     ### Creating datastructures from data:
