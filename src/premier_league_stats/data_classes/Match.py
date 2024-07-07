@@ -18,3 +18,21 @@ class Match:
     team_h_score: int = 0
     stats: Optional[Dict[str, Dict[int, int]]] = field(default_factory=dict)  # Event name (goals): Dict[player: count]
 
+    
+    def get_team_sum(self, identifier: str, team: str):
+        if team not in ['home', 'away']:
+            raise Exception("'team' must be either 'home' or 'away'")
+        
+        if team == 'home':
+            return self.get_home_sum(identifier)
+        else:
+            return self.get_away_sum(identifier)
+    
+    def get_away_sum(self, identifier):
+        return sum([num for num in self.stats[identifier]['away']])
+    
+    def get_home_sum(self, identifier):
+        return sum([num for num in self.stats[identifier]['home']])
+    
+    def get_score(self) -> str:
+        return f"{self.team_h_score} - {self.team_a_score}"

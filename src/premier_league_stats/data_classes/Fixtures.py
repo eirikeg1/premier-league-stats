@@ -29,6 +29,8 @@ class Fixtures:
             team_a_difficulty = int(game['team_a_difficulty'])
             
             
+            
+            # TODO: Look into cleaning up structure?
             # Create stats dictionary to store player statistics per match
             # Structure mirrors Fantasy API stats format, where:
             # - 'identifier' is the type of statistic (e.g., 'goals_scored', 'assists')
