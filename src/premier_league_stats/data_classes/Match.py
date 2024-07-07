@@ -29,10 +29,10 @@ class Match:
             return self.get_away_sum(identifier)
     
     def get_away_sum(self, identifier):
-        return sum([num for num in self.stats[identifier]['away']])
-    
+        return sum(item['a_value'] for item in self.stats[identifier]['away'])
+
     def get_home_sum(self, identifier):
-        return sum([num for num in self.stats[identifier]['home']])
+        return sum(item['h_value'] for item in self.stats[identifier]['home'])
     
     def get_score(self) -> str:
         return f"{self.team_h_score} - {self.team_a_score}"
