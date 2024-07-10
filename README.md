@@ -2,6 +2,9 @@
 
 Uses the premier league fantasy API to fetch premier league data.
 
+*WORK IN PROGESS* - Currently only reads in static data for the season (players, teams, fixtures and
+ dates)
+
 ## Future plans (in no particular order)
 * Train Machine learning models to analyze statistics
 * Implement other methods to analyze statistics
