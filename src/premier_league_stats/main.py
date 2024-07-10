@@ -6,7 +6,13 @@ if __name__ == "__main__":
     
     print("Static data imported")
     
-    print(stats.fixtures.game_weeks[1][0])
+    for i, game_week in enumerate(stats.game_week_iterator()):
+        print(f"Game week {i + 1}:")
+        for game in game_week:
+            print(f" * {game.id}")
+        print("\n")
+    
+    
     # print(f"Standings:\n{stats.standings}\n\n")
     
     # for team in stats.teams_by_name.values():

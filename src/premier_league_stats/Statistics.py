@@ -137,6 +137,10 @@ class Statistics:
             self.import_static_data()
             
         return self.standings
+    
+    
+    def game_week_iterator(self):
+        return iter(self.fixtures.game_week_iterator())
 
 
 if __name__ == "__main__":
