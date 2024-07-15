@@ -54,7 +54,7 @@ class PremierLeagueFantasyAPI:
             if cache and (cached := self.cached_requests.get('fixtures')):
                 request = cached
             else:
-                request = requests.get("{self.FIXTURES_URL}/fixtures?event={game_week}")
+                request = requests.get(f"{self.FIXTURES_URL}/fixtures?event={game_week}")
     
             if request.status_code != 200:
                 raise Exception(
