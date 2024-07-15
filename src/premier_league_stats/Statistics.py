@@ -102,11 +102,12 @@ class Statistics:
             raise Exception("No team data present. Please import data first")
 
         self.standings = pd.DataFrame.from_dict(
-            {"name": [team.name for team in self.teams_by_name.values()],
-             "played": [team.played for team in self.teams_by_name.values()],
-             "position": [team.position for team in self.teams_by_name.values()],
-             "points": [team.points for team in self.teams_by_name.values()],
-             "strength": [team.strength for team in self.teams_by_name.values()],
+            {
+                "name": [team.name for team in self.teams_by_name.values()],
+                "played": [team.played for team in self.teams_by_name.values()],
+                "position": [team.position for team in self.teams_by_name.values()],
+                "points": [team.points for team in self.teams_by_name.values()],
+                "strength": [team.strength for team in self.teams_by_name.values()],
              },
         )
        

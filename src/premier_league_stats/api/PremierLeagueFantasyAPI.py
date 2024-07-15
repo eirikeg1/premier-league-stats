@@ -48,3 +48,21 @@ class PremierLeagueFantasyAPI:
         
         return request.json()
     
+    
+    def fetch_fixtures_by_game_week(self, game_week: int, cache=True):
+            
+            if cache and (cached := self.cached_requests.get('fixtures')):
+                request = cached
+            else:
+                request = requests.get("{self.FIXTURES_URL}/fixtures?event={game_week}")
+    
+            if request.status_code != 200:
+                raise Exception(
+                    f"Request to import static data failed with status code {request.status_code}"
+                )
+                
+            if cache:
+                self.cached_requests['fixtures'] = request
+            
+            return request.json()
+    
