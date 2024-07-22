@@ -114,14 +114,14 @@ class Team:
         """Add player to team"""
         
         new_player = Player(
-                id=player["id"],
-                name=player["web_name"],
-                team=player["team"],
-                position=None,
-                photo=player["photo"],
-                squad_number=player["squad_number"],
-                stats=player,
-            )
+            id=player["id"],
+            name=player["web_name"],
+            team=player["team"],
+            position=None,
+            photo=player["photo"],
+            squad_number=player["squad_number"],
+            stats=player,
+        )
         
         self.players.append(new_player)
         

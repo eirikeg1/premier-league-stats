@@ -8,14 +8,14 @@ from data_classes.News import News
 class Player:
     
     def __init__(
-            self,
-            id: int,
-            name: str,
-            team: int,
-            position: str = None, # singular_position in api
-            photo: str = None,
-            squad_number: int = None,
-            stats: pd.Series = None
+        self,
+        id: int,
+        name: str,
+        team: int,
+        position: str = None, # singular_position in api
+        photo: str = None,
+        squad_number: int = None,
+        stats: pd.Series = None
     ):
         """
         Initialize player

@@ -77,21 +77,19 @@ class Fixtures:
                     cur_id_stats.append({'h_element': h_element, 'h_value': h_value})                    
 
             # Create an object and add it to fixture game week
-            self.game_weeks[event].append(
-                Match(
-                    id,
-                    event,
-                    finished,
-                    id,
-                    kickoff_time,
-                    minutes,
-                    team_a,
-                    team_a_score,
-                    team_h,
-                    team_h_score,
-                    stats
-                )
-            )
+            self.game_weeks[event].append(Match(
+                id,
+                event,
+                finished,
+                id,
+                kickoff_time,
+                minutes,
+                team_a,
+                team_a_score,
+                team_h,
+                team_h_score,
+                stats
+            ))
             
     def game_week_iterator(self):
         return iter(self.game_weeks.values())
