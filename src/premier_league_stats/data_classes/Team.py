@@ -1,7 +1,7 @@
 from typing import Generator
 import pandas as pd
 
-from data_classes.Player import Player
+from premier_league_stats.data_classes.Player import Player
 
 
 class Team:

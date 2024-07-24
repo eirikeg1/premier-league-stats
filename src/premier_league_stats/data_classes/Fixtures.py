@@ -1,6 +1,6 @@
 from collections import defaultdict
 from typing import Dict, List
-from data_classes.Match import Match
+from premier_league_stats.data_classes.Match import Match
 
 
 class Fixtures:

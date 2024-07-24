@@ -2,7 +2,7 @@ from typing import List
 
 import pandas as pd
 
-from data_classes.News import News
+from premier_league_stats.data_classes.News import News
 
 
 class Player:
