@@ -36,7 +36,7 @@ class Fixtures:
             # - 'identifier' is the type of statistic (e.g., 'goals_scored', 'assists')
             # - 'a' and 'h' are lists of statistics for away and home teams respectively
             # Example:
-            # stats = {
+            # stats = [{
             #     'goals_scored': {
             #         'away': [
             #             {'a_element': 2342, 'a_value': 1},
@@ -47,49 +47,51 @@ class Fixtures:
             #         ]
             #     },
             #     'assists': ...
-            # }
+            # }, ...]
 
             
             stats = defaultdict(list)
             
-            for stat in game['stats']:
-                identifier = stat['identifier']
-                a_stats = stat['a']
-                h_stats = stat['h']
+            # TODO: Implement stats import once the structure is clear
+            # print(game['stats'])
+            # for stat, value in game['stats'].items():
+            #     identifier = stat['identifier']
+            #     a_stats = stat['a']
+            #     h_stats = stat['h']
                 
-                cur_id_stats = {
-                    'away': defaultdict(list),
-                    'home': defaultdict(list),
-                }
+            #     cur_id_stats = {
+            #         'away': defaultdict(list),
+            #         'home': defaultdict(list),
+            #     }
                 
-                cur_id_stats = stats[identifier]
+            #     cur_id_stats = stats[identifier]
                 
-                for a_stat in a_stats:
-                    a_value = int(a_stat['value'])
-                    a_element = int(a_stat['element'])
+            #     for a_stat in a_stats:
+            #         a_value = int(a_stat['value'])
+            #         a_element = int(a_stat['element'])
                     
-                    cur_id_stats.append({'a_element': a_element, 'a_value': a_value})
+            #         cur_id_stats.append({'a_element': a_element, 'a_value': a_value})
 
                 
-                for h_stat in h_stats:
-                    h_value = int(h_stat['value'])
-                    h_element = int(h_stat['element'])
-                    cur_id_stats.append({'h_element': h_element, 'h_value': h_value})                    
+            #     for h_stat in h_stats:
+            #         h_value = int(h_stat['value'])
+            #         h_element = int(h_stat['element'])
+            #         cur_id_stats.append({'h_element': h_element, 'h_value': h_value})                    
 
             # Create an object and add it to fixture game week
             self.game_weeks[event].append(Match(
-                id,
-                event,
-                finished,
-                id,
-                kickoff_time,
-                minutes,
-                team_a,
-                team_a_score,
-                team_h,
-                team_h_score,
-                stats
-            ))
+            code=id,  # Assuming 'code' should be the same as 'id'
+            event=event,
+            finished=finished,
+            id=id,
+            kickoff_time=kickoff_time,
+            minutes=minutes,
+            team_a=team_a,
+            team_a_score=team_a_score,
+            team_h=team_h,
+            team_h_score=team_h_score,
+            stats=stats
+        ))
             
     def game_week_iterator(self):
         return iter(self.game_weeks.values())
