@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: premier-league-stats
+Version: 0.0.1
+Summary: Premier league package for analyzing Premier League statistics
+Home-page: UNKNOWN
+Author: Eirik Eggset
+Author-email: <mail@mail.com>
+License: UNKNOWN
+Keywords: python,football analytics,machine learning
+Platform: UNKNOWN
+Classifier: Premier League Analytics Pipeline
+Classifier: Machine Learning Project
+
+My first Python package with a slightly longer description
+

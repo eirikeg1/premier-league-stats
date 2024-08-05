@@ -1,0 +1,11 @@
+README.md
+setup.py
+premier_league_stats.egg-info/PKG-INFO
+premier_league_stats.egg-info/SOURCES.txt
+premier_league_stats.egg-info/dependency_links.txt
+premier_league_stats.egg-info/requires.txt
+premier_league_stats.egg-info/top_level.txt
+src/__init__.py
+src/premier_league_stats/Statistics.py
+src/premier_league_stats/__init__.py
+src/premier_league_stats/main.py

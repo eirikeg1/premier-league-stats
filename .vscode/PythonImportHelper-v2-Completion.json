@@ -1,19 +1,98 @@
 [
     {
-        "label": "requests",
-        "kind": 6,
+        "label": "PremierLeagueFantasyAPI",
+        "importPath": "api.PremierLeagueFantasyAPI",
+        "description": "api.PremierLeagueFantasyAPI",
         "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
+        "detail": "api.PremierLeagueFantasyAPI",
         "documentation": {}
     },
     {
-        "label": "defaultdict",
-        "importPath": "collections",
-        "description": "collections",
+        "label": "PremierLeagueFantasyAPI",
+        "importPath": "api.PremierLeagueFantasyAPI",
+        "description": "api.PremierLeagueFantasyAPI",
         "isExtraImport": true,
-        "detail": "collections",
+        "detail": "api.PremierLeagueFantasyAPI",
+        "documentation": {}
+    },
+    {
+        "label": "Team",
+        "importPath": "data_classes.Team",
+        "description": "data_classes.Team",
+        "isExtraImport": true,
+        "detail": "data_classes.Team",
+        "documentation": {}
+    },
+    {
+        "label": "Team",
+        "importPath": "data_classes.Team",
+        "description": "data_classes.Team",
+        "isExtraImport": true,
+        "detail": "data_classes.Team",
+        "documentation": {}
+    },
+    {
+        "label": "Fixtures",
+        "importPath": "data_classes.Fixtures",
+        "description": "data_classes.Fixtures",
+        "isExtraImport": true,
+        "detail": "data_classes.Fixtures",
+        "documentation": {}
+    },
+    {
+        "label": "Fixtures",
+        "importPath": "data_classes.Fixtures",
+        "description": "data_classes.Fixtures",
+        "isExtraImport": true,
+        "detail": "data_classes.Fixtures",
+        "documentation": {}
+    },
+    {
+        "label": "Fixtures",
+        "importPath": "data_classes.Fixtures",
+        "description": "data_classes.Fixtures",
+        "isExtraImport": true,
+        "detail": "data_classes.Fixtures",
+        "documentation": {}
+    },
+    {
+        "label": "LoadingAnimator",
+        "importPath": "utils.LoadingAnimator",
+        "description": "utils.LoadingAnimator",
+        "isExtraImport": true,
+        "detail": "utils.LoadingAnimator",
+        "documentation": {}
+    },
+    {
+        "label": "LoadingAnimator",
+        "importPath": "utils.LoadingAnimator",
+        "description": "utils.LoadingAnimator",
+        "isExtraImport": true,
+        "detail": "utils.LoadingAnimator",
+        "documentation": {}
+    },
+    {
+        "label": "pprint",
+        "importPath": "pprint",
+        "description": "pprint",
+        "isExtraImport": true,
+        "detail": "pprint",
+        "documentation": {}
+    },
+    {
+        "label": "pprint",
+        "importPath": "pprint",
+        "description": "pprint",
+        "isExtraImport": true,
+        "detail": "pprint",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -34,6 +113,14 @@
     },
     {
         "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -81,11 +168,70 @@
         "documentation": {}
     },
     {
-        "label": "Match",
-        "importPath": "premier_league_stats.data_classes.Match",
-        "description": "premier_league_stats.data_classes.Match",
+        "label": "numpy",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "premier_league_stats.data_classes.Match",
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "Statistics",
+        "importPath": "Statistics",
+        "description": "Statistics",
+        "isExtraImport": true,
+        "detail": "Statistics",
+        "documentation": {}
+    },
+    {
+        "label": "Statistics",
+        "importPath": "Statistics",
+        "description": "Statistics",
+        "isExtraImport": true,
+        "detail": "Statistics",
+        "documentation": {}
+    },
+    {
+        "label": "Fixtures",
+        "importPath": "premier_league_stats.data_classes.Fixtures",
+        "description": "premier_league_stats.data_classes.Fixtures",
+        "isExtraImport": true,
+        "detail": "premier_league_stats.data_classes.Fixtures",
+        "documentation": {}
+    },
+    {
+        "label": "Fixtures",
+        "importPath": "premier_league_stats.data_classes.Fixtures",
+        "description": "premier_league_stats.data_classes.Fixtures",
+        "isExtraImport": true,
+        "detail": "premier_league_stats.data_classes.Fixtures",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
         "documentation": {}
     },
     {
@@ -121,31 +267,6 @@
         "documentation": {}
     },
     {
-        "label": "pandas",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pandas",
-        "description": "pandas",
-        "detail": "pandas",
-        "documentation": {}
-    },
-    {
-        "label": "News",
-        "importPath": "premier_league_stats.data_classes.News",
-        "description": "premier_league_stats.data_classes.News",
-        "isExtraImport": true,
-        "detail": "premier_league_stats.data_classes.News",
-        "documentation": {}
-    },
-    {
-        "label": "Player",
-        "importPath": "premier_league_stats.data_classes.Player",
-        "description": "premier_league_stats.data_classes.Player",
-        "isExtraImport": true,
-        "detail": "premier_league_stats.data_classes.Player",
-        "documentation": {}
-    },
-    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -164,60 +285,12 @@
         "documentation": {}
     },
     {
-        "label": "PremierLeagueFantasyAPI",
-        "importPath": "api.PremierLeagueFantasyAPI",
-        "description": "api.PremierLeagueFantasyAPI",
-        "isExtraImport": true,
-        "detail": "api.PremierLeagueFantasyAPI",
-        "documentation": {}
-    },
-    {
-        "label": "Team",
-        "importPath": "data_classes.Team",
-        "description": "data_classes.Team",
-        "isExtraImport": true,
-        "detail": "data_classes.Team",
-        "documentation": {}
-    },
-    {
-        "label": "Fixtures",
-        "importPath": "data_classes.Fixtures",
-        "description": "data_classes.Fixtures",
-        "isExtraImport": true,
-        "detail": "data_classes.Fixtures",
-        "documentation": {}
-    },
-    {
-        "label": "LoadingAnimator",
-        "importPath": "utils.LoadingAnimator",
-        "description": "utils.LoadingAnimator",
-        "isExtraImport": true,
-        "detail": "utils.LoadingAnimator",
-        "documentation": {}
-    },
-    {
-        "label": "pprint",
-        "importPath": "pprint",
-        "description": "pprint",
-        "isExtraImport": true,
-        "detail": "pprint",
-        "documentation": {}
-    },
-    {
-        "label": "numpy",
+        "label": "os",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
-        "documentation": {}
-    },
-    {
-        "label": "Statistics",
-        "importPath": "Statistics",
-        "description": "Statistics",
-        "isExtraImport": true,
-        "detail": "Statistics",
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -230,20 +303,11 @@
         "documentation": {}
     },
     {
-        "label": "Fixtures",
-        "importPath": "premier_league_stats.data_classes.Fixtures",
-        "description": "premier_league_stats.data_classes.Fixtures",
+        "label": "Match",
+        "importPath": "premier_league_stats.data_classes.Match",
+        "description": "premier_league_stats.data_classes.Match",
         "isExtraImport": true,
-        "detail": "premier_league_stats.data_classes.Fixtures",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "detail": "premier_league_stats.data_classes.Match",
         "documentation": {}
     },
     {
@@ -260,6 +324,24 @@
         "description": "setuptools",
         "isExtraImport": true,
         "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "Statistics",
+        "kind": 6,
+        "importPath": "build.lib.src.premier_league_stats.Statistics",
+        "description": "build.lib.src.premier_league_stats.Statistics",
+        "peekOfCode": "class Statistics:\n    \"\"\"Class for storing and manipulating statistics for the premier league\"\"\"\n    # Team data (Team.name: str -> Team)\n    teams_by_name: dict[Team] = None\n    standings: pd.DataFrame = pd.DataFrame()\n    # Fantasy PL specific data\n    events_data: pd.DataFrame = None\n    game_settings_data: pd.DataFrame = None\n    phases: pd.DataFrame = None\n    # Match data",
+        "detail": "build.lib.src.premier_league_stats.Statistics",
+        "documentation": {}
+    },
+    {
+        "label": "foo",
+        "kind": 2,
+        "importPath": "build.lib.src.premier_league_stats.main",
+        "description": "build.lib.src.premier_league_stats.main",
+        "peekOfCode": "def foo(fixtures):\n    data = [\n        {\n            'code': '123',\n            'event': '1',\n            'finished': True,\n            'kickoff_time': '2022-01-01T12:00:00Z',\n            'minutes': '90',\n            'team_a': '1',\n            'team_a_score': '2',",
+        "detail": "build.lib.src.premier_league_stats.main",
         "documentation": {}
     },
     {
@@ -339,7 +421,7 @@
         "kind": 2,
         "importPath": "tests.data_classes.test_Fixtures",
         "description": "tests.data_classes.test_Fixtures",
-        "peekOfCode": "def fixtures():\n    return Fixtures(None)\ndef test_import_fantasy_json(fixtures):\n    data = [\n        {\n            'code': '123',\n            'event': '1',\n            'finished': True,\n            'kickoff_time': '2022-01-01T12:00:00Z',\n            'minutes': '90',",
+        "peekOfCode": "def fixtures():\n    return Fixtures(None)\ndef test_import_fantasy_json(fixtures: Fixtures):\n    data = [\n        {\n            'code': '123',\n            'event': '1',\n            'finished': True,\n            'kickoff_time': '2022-01-01T12:00:00Z',\n            'minutes': '90',",
         "detail": "tests.data_classes.test_Fixtures",
         "documentation": {}
     },
@@ -348,7 +430,7 @@
         "kind": 2,
         "importPath": "tests.data_classes.test_Fixtures",
         "description": "tests.data_classes.test_Fixtures",
-        "peekOfCode": "def test_import_fantasy_json(fixtures):\n    data = [\n        {\n            'code': '123',\n            'event': '1',\n            'finished': True,\n            'kickoff_time': '2022-01-01T12:00:00Z',\n            'minutes': '90',\n            'team_a': '1',\n            'team_a_score': '2',",
+        "peekOfCode": "def test_import_fantasy_json(fixtures: Fixtures):\n    data = [\n        {\n            'code': '123',\n            'event': '1',\n            'finished': True,\n            'kickoff_time': '2022-01-01T12:00:00Z',\n            'minutes': '90',\n            'id': '123',\n            'team_a': '1',",
         "detail": "tests.data_classes.test_Fixtures",
         "documentation": {}
     },

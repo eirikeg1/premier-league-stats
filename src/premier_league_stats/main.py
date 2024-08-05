@@ -14,6 +14,7 @@ if __name__ == "__main__":
         print(f"Game week {i + 1}:")
         for game in game_week:
             print(f" * {game.id}")
+            print(f"stats: {game.stats}")
         print("\n")
     
     
