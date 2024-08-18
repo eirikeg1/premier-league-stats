@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 
-class Statistics:
+class StatisticsManager:
     """Class for storing and manipulating statistics for the premier league"""
 
     # Team data (Team.name: str -> Team)
@@ -43,14 +43,6 @@ class Statistics:
         self.teams_by_name = {}
         self.teams_by_id = {}
         self.simulated_game_weeks = 0 # reset to make unique for each object
-
-        ### Import initial team and player data from before game-week 1
-        self.import_static_data()
-        self.create_standings()
-        
-        self.import_fixtures_data()
-        
-        # TODO Import player data
         
 
     ### Importing data:
@@ -119,6 +111,11 @@ class Statistics:
             self.teams_by_id[element["team"]].add_player(element)
 
 
+    ## Download data
+    
+    def download_raw_data(self):
+        ...
+
     ### Get data:
 
     def get_teams(self) -> dict[Team]:
@@ -145,7 +142,7 @@ class Statistics:
 
 
 if __name__ == "__main__":
-    stats = Statistics()
+    stats = StatisticsManager()
     
     print("Static data imported")
     # print(f"Standings:\n{stats.standings}\n\n")

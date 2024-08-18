@@ -194,14 +194,6 @@
         "documentation": {}
     },
     {
-        "label": "Statistics",
-        "importPath": "Statistics",
-        "description": "Statistics",
-        "isExtraImport": true,
-        "detail": "Statistics",
-        "documentation": {}
-    },
-    {
         "label": "Fixtures",
         "importPath": "premier_league_stats.data_classes.Fixtures",
         "description": "premier_league_stats.data_classes.Fixtures",
@@ -291,6 +283,14 @@
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "StatisticsManager",
+        "importPath": "StatisticsManager",
+        "description": "StatisticsManager",
+        "isExtraImport": true,
+        "detail": "StatisticsManager",
         "documentation": {}
     },
     {
@@ -408,12 +408,21 @@
         "documentation": {}
     },
     {
-        "label": "Statistics",
+        "label": "StatisticsManager",
         "kind": 6,
-        "importPath": "src.premier_league_stats.Statistics",
-        "description": "src.premier_league_stats.Statistics",
-        "peekOfCode": "class Statistics:\n    \"\"\"Class for storing and manipulating statistics for the premier league\"\"\"\n    # Team data (Team.name: str -> Team)\n    teams_by_name: dict[Team] = None\n    standings: pd.DataFrame = pd.DataFrame()\n    # Fantasy PL specific data\n    events_data: pd.DataFrame = None\n    game_settings_data: pd.DataFrame = None\n    phases: pd.DataFrame = None\n    # Match data",
-        "detail": "src.premier_league_stats.Statistics",
+        "importPath": "src.premier_league_stats.StatisticsManager",
+        "description": "src.premier_league_stats.StatisticsManager",
+        "peekOfCode": "class StatisticsManager:\n    \"\"\"Class for storing and manipulating statistics for the premier league\"\"\"\n    # Team data (Team.name: str -> Team)\n    teams_by_name: dict[Team] = None\n    standings: pd.DataFrame = pd.DataFrame()\n    # Fantasy PL specific data\n    events_data: pd.DataFrame = None\n    game_settings_data: pd.DataFrame = None\n    phases: pd.DataFrame = None\n    # Match data",
+        "detail": "src.premier_league_stats.StatisticsManager",
+        "documentation": {}
+    },
+    {
+        "label": "Main",
+        "kind": 6,
+        "importPath": "src.premier_league_stats.main",
+        "description": "src.premier_league_stats.main",
+        "peekOfCode": "class Main:\n    def __init__(self):\n        self.stats = StatisticsManager()\n    def import_data(self):\n        ### Import initial team and player data from before game-week 1\n        self.stats.import_static_data()\n        self.stats.create_standings()\n        self.stats.import_fixtures_data()\n        self.stats.download_raw_data()\n        # TODO Import player data",
+        "detail": "src.premier_league_stats.main",
         "documentation": {}
     },
     {

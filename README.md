@@ -19,11 +19,13 @@ In order to run the whole pipeline, including testing, preprocessing and predict
 ```
 
 ## Commands
-* **Data preprocessing:** Preprocess the data before performing any analysis.
+**Import data:** Imports the data from a space separated string of sources (only "fantasy" is available now).
   ```bash
-  python3 src/premier-league-stats/main.py preprocess [options]
+  python3 src/premier-league-stats/main.py import "fantasy source_2 source_3"
   ```
-* **Prediction:** Run the prediction algorithms on the preprocessed data.
+**Data preprocessing:** Preprocess the data before performing any analysis.
+  ```bash
+  python3 the preprocessed data.
   ```bash
   python3 src/premier-league-stats/main.py predict [options]
   ```
