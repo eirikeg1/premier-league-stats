@@ -25,13 +25,14 @@ In order to run the whole pipeline, including testing, preprocessing and predict
   ```
 **Data preprocessing:** Preprocess the data before performing any analysis.
   ```bash
-  python3 the preprocessed data.
+  python3 src/premier-league-stats/main.py preprocess [options]
+  ```
   ```bash
   python3 src/premier-league-stats/main.py predict [options]
   ```
 
 ## Data preprocessing
-To preprocess the data run the script 
+The data preprocessing is not finished yet, but is currently being implemented.
 
 # Testing
 The project contains tests created with pytest. To run all tests runt the command `pytest` in the main directory.
@@ -42,4 +43,5 @@ The project contains tests created with pytest. To run all tests runt the comman
 * Use external database to store data (locally? Supabase? Something else?)
 * Supplement with other APIs to fetch statistics
     * For example OneFutbol's
+* Create a user interface (webapp?) to visualize and easily use the project
 
