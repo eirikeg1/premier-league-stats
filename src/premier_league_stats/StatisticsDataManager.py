@@ -1,16 +1,12 @@
 from api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
 from data_classes.Team import Team
 from data_classes.Fixtures import Fixtures
-from utils.LoadingAnimator import LoadingAnimator
-
-from pprint import pprint
-from typing import List
 
 import numpy as np
 import pandas as pd
 
 
-class StatisticsManager:
+class StatisticsDataManager:
     """Class for storing and manipulating statistics for the premier league"""
 
     # Team data (Team.name: str -> Team)
@@ -142,7 +138,7 @@ class StatisticsManager:
 
 
 if __name__ == "__main__":
-    stats = StatisticsManager()
+    stats = StatisticsDataManager()
     
     print("Static data imported")
     # print(f"Standings:\n{stats.standings}\n\n")

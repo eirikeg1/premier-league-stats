@@ -64,22 +64,6 @@
         "documentation": {}
     },
     {
-        "label": "LoadingAnimator",
-        "importPath": "utils.LoadingAnimator",
-        "description": "utils.LoadingAnimator",
-        "isExtraImport": true,
-        "detail": "utils.LoadingAnimator",
-        "documentation": {}
-    },
-    {
-        "label": "pprint",
-        "importPath": "pprint",
-        "description": "pprint",
-        "isExtraImport": true,
-        "detail": "pprint",
-        "documentation": {}
-    },
-    {
         "label": "pprint",
         "importPath": "pprint",
         "description": "pprint",
@@ -145,14 +129,6 @@
     },
     {
         "label": "Generator",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -259,6 +235,22 @@
         "documentation": {}
     },
     {
+        "label": "ABC",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "abstractmethod",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -286,11 +278,11 @@
         "documentation": {}
     },
     {
-        "label": "StatisticsManager",
-        "importPath": "StatisticsManager",
-        "description": "StatisticsManager",
+        "label": "StatisticsDataManager",
+        "importPath": "StatisticsDataManager",
+        "description": "StatisticsDataManager",
         "isExtraImport": true,
-        "detail": "StatisticsManager",
+        "detail": "StatisticsDataManager",
         "documentation": {}
     },
     {
@@ -403,7 +395,7 @@
         "kind": 6,
         "importPath": "src.premier_league_stats.data_processing.DataProcessingManager",
         "description": "src.premier_league_stats.data_processing.DataProcessingManager",
-        "peekOfCode": "class DataProcessingManager:\n    def __init__(self, data):\n        self.raw_data = data\n        self.tokenized_data = None\n        self.vectorized_data = None\n    def clean_data(self, cleaning_method=\"default\"):\n        pass\n    def tokenize_data(self, tokenization_method=\"default\"):\n        pass\n    def vectorize_data(self, vectorization_method=\"default\"):",
+        "peekOfCode": "class DataProcessingManager(ABC):\n    \"\"\"\n    Abstract base class for data processing managers.\n    This class provides a blueprint for data processing managers that can be extended for different API endpoints,\n    such as the Fantasy Premier League events endpoint.\n    This includes some commonly used tools like tokenizers.\n    \"\"\"\n    def __init__(self, data):\n        self.raw_data = data\n        self.tokenized_data = None",
         "detail": "src.premier_league_stats.data_processing.DataProcessingManager",
         "documentation": {}
     },
@@ -417,12 +409,12 @@
         "documentation": {}
     },
     {
-        "label": "StatisticsManager",
+        "label": "StatisticsDataManager",
         "kind": 6,
-        "importPath": "src.premier_league_stats.StatisticsManager",
-        "description": "src.premier_league_stats.StatisticsManager",
-        "peekOfCode": "class StatisticsManager:\n    \"\"\"Class for storing and manipulating statistics for the premier league\"\"\"\n    # Team data (Team.name: str -> Team)\n    teams_by_name: dict[Team] = None\n    standings: pd.DataFrame = pd.DataFrame()\n    # Fantasy PL specific data\n    events_data: pd.DataFrame = None\n    game_settings_data: pd.DataFrame = None\n    phases: pd.DataFrame = None\n    # Match data",
-        "detail": "src.premier_league_stats.StatisticsManager",
+        "importPath": "src.premier_league_stats.StatisticsDataManager",
+        "description": "src.premier_league_stats.StatisticsDataManager",
+        "peekOfCode": "class StatisticsDataManager:\n    \"\"\"Class for storing and manipulating statistics for the premier league\"\"\"\n    # Team data (Team.name: str -> Team)\n    teams_by_name: dict[Team] = None\n    standings: pd.DataFrame = pd.DataFrame()\n    # Fantasy PL specific data\n    events_data: pd.DataFrame = None\n    game_settings_data: pd.DataFrame = None\n    phases: pd.DataFrame = None\n    # Match data",
+        "detail": "src.premier_league_stats.StatisticsDataManager",
         "documentation": {}
     },
     {
@@ -430,7 +422,7 @@
         "kind": 6,
         "importPath": "src.premier_league_stats.main",
         "description": "src.premier_league_stats.main",
-        "peekOfCode": "class Main:\n    def __init__(self):\n        self.stats = StatisticsManager()\n    def import_data(self):\n        ### Import initial team and player data from before game-week 1\n        self.stats.import_static_data()\n        self.stats.create_standings()\n        self.stats.import_fixtures_data()\n        self.stats.download_raw_data()\n        # TODO Import player data",
+        "peekOfCode": "class Main:\n    def __init__(self):\n        self.stats = StatisticsDataManager()\n    def import_data(self):\n        ### Import initial team and player data from before game-week 1\n        self.stats.import_static_data()\n        self.stats.create_standings()\n        self.stats.import_fixtures_data()\n        self.stats.download_raw_data()\n        # TODO Import player data",
         "detail": "src.premier_league_stats.main",
         "documentation": {}
     },

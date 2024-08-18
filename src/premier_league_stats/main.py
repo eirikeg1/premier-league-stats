@@ -1,11 +1,11 @@
 import os
 # Ensure all necessary imports are here
 from data_classes.Fixtures import Fixtures
-from StatisticsManager import StatisticsManager
+from StatisticsDataManager import StatisticsDataManager
 
 class Main:
     def __init__(self):
-        self.stats = StatisticsManager()
+        self.stats = StatisticsDataManager()
 
     def import_data(self):
         ### Import initial team and player data from before game-week 1
