@@ -65,6 +65,19 @@ class StatisticsDataManager:
         
         self.fixtures_data = self.fantasy_api.fetch_fixtures_json()
         self.fixtures = Fixtures(self.fixtures_data)
+        
+        # Update standings
+        current_standings = self.fixtures.standings
+        for i, team in self.standings.iterrows():
+            print(f"team id:\n{team}")
+            print(f"standings: {current_standings}\n\n")
+            self.standings.loc[self.standings['id'] == team['id'], 'points'] = current_standings[int(team['id'])]
+        # Sort standings by points
+        self.standings.sort_values(by=["points"], ascending=False, inplace=True)
+        
+        # Reset row index from 1
+        self.standings.reset_index(drop=True, inplace=True)
+        self.standings.index = range(1, len(self.standings) + 1)
 
     def import_from_file(self, file: str):
         """
@@ -96,6 +109,7 @@ class StatisticsDataManager:
                 "position": [team.position for team in self.teams_by_name.values()],
                 "points": [team.points for team in self.teams_by_name.values()],
                 "strength": [team.strength for team in self.teams_by_name.values()],
+                "id": [team.id for team in self.teams_by_name.values()],
              },
         )
        

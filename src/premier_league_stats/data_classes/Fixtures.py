@@ -1,5 +1,7 @@
 from collections import defaultdict
-from typing import Dict, List
+from typing import DefaultDict, Dict, List
+
+import pandas as pd
 from .Match import Match
 
 
@@ -7,6 +9,7 @@ class Fixtures:
     
     def __init__(self, data_json):
         self.game_weeks = defaultdict(list)
+        self.standings: DefaultDict[int, int] = defaultdict(lambda: 0)
         if data_json:
             self.import_fantasy_json(data_json)
 
@@ -80,18 +83,28 @@ class Fixtures:
 
             # Create an object and add it to fixture game week
             self.game_weeks[event].append(Match(
-            code=id,  # Assuming 'code' should be the same as 'id'
-            event=event,
-            finished=finished,
-            id=id,
-            kickoff_time=kickoff_time,
-            minutes=minutes,
-            team_a=team_a,
-            team_a_score=team_a_score,
-            team_h=team_h,
-            team_h_score=team_h_score,
-            stats=stats
-        ))
+                code=id,  # Assuming 'code' should be the same as 'id'
+                event=event,
+                finished=finished,
+                id=id,
+                kickoff_time=kickoff_time,
+                minutes=minutes,
+                team_a=team_a,
+                team_a_score=team_a_score,
+                team_h=team_h,
+                team_h_score=team_h_score,
+                stats=stats
+            ))
+            
+            # Update league standings
+            if team_h_score is not None and team_a_score is not None:
+                if team_h_score > team_a_score:
+                    self.standings[team_h] += 3
+                elif team_h_score < team_a_score:
+                    self.standings[team_a] += 3
+                else:
+                    self.standings[team_h] += 1
+                    self.standings[team_a] += 1
             
     def game_week_iterator(self):
         return iter(self.game_weeks.values())
