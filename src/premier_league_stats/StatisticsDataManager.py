@@ -10,7 +10,7 @@ class StatisticsDataManager:
     """Class for storing and manipulating statistics for the premier league"""
 
     # Team data (Team.name: str -> Team)
-    teams_by_name: dict[Team] = None
+    teams_by_name: dict[str, Team] = None
     standings: pd.DataFrame = pd.DataFrame()
 
     # Fantasy PL specific data

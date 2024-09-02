@@ -26,7 +26,7 @@ class Main:
         # Implement prediction logic
         pass
     
-    def debug_print(self):
+    def development_code(self):
         """changed thoughout development for testing various things"""
         # Implement debug logic
         for i, game_week in enumerate(self.stats.game_week_iterator()):
@@ -39,15 +39,16 @@ class Main:
         # Ensure the Statistics class has standings and teams_by_name attributes
         print(f"Standings:\n{self.stats.standings}\n\n")
         
+        print("Teams best performers:")
         for team in self.stats.teams_by_name.values():
-            print(f"{team.name} : {len(team.players)} players")
-            for player in team.players[:5]:  # Assuming team.players is a list
-                print(f" * {player.name}")
+            print(f"\n{team.name} : {len(team.players)} players")
+            for player in sorted(team.players, key=lambda p: p.stats['total_points'], reverse=True)[:5]:  # Assuming team.players is a list
+                print(f" * {player.name} : {player.stats['total_points']} total points")
    
 if __name__ == "__main__":
     main = Main()
     main.import_data()
     main.preprocess_data()
     main.predict()
-    main.debug_print()
+    main.development_code()
     
