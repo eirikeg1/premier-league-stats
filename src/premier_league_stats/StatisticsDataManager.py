@@ -78,6 +78,11 @@ class StatisticsDataManager:
         # Reset row index from 1
         self.standings.reset_index(drop=True, inplace=True)
         self.standings.index = range(1, len(self.standings) + 1)
+        
+        # Update teams
+        for name, team in self.teams_by_name.items():
+            self.teams_by_name[name].played = current_standings[team.id]
+            self.teams_by_name[name].points = current_standings[team.id]
 
     def import_from_file(self, file: str):
         """
