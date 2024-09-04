@@ -40,8 +40,10 @@ The project contains tests created with pytest. To run all tests runt the comman
 # Future plans (in no particular order)
 * Train Machine learning models to analyze statistics
 * Implement other methods to analyze statistics
+* Fantasy Premier League analytics
 * Use external database to store data (locally? Supabase? Something else?)
 * Supplement with other APIs to fetch statistics
     * For example OneFutbol's
+    * Webscraping?
 * Create a user interface (webapp?) to visualize and easily use the project
 
