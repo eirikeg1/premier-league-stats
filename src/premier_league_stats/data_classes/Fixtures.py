@@ -7,9 +7,10 @@ from .Match import Match
 
 class Fixtures:
     
-    def __init__(self, data_json):
+    def __init__(self, data_json, team_names: Dict[int, str] = None):
         self.game_weeks = defaultdict(list)
-        self.standings: DefaultDict[int, int] = defaultdict(lambda: 0)
+        self.standings_dict = defaultdict(lambda: {'played': 0, 'points': 0, 'strength': 0, 'position': 0})
+        self.team_names = team_names or {}
         if data_json:
             self.import_fantasy_json(data_json)
 
@@ -96,16 +97,60 @@ class Fixtures:
                 stats=stats
             ))
             
-            # Update league standings
+            # Update standings
             if team_h_score is not None and team_a_score is not None:
+                # Increment matches played
+                self.standings_dict[team_h]['played'] += 1
+                self.standings_dict[team_a]['played'] += 1
+                
+                # Update points based on match result
                 if team_h_score > team_a_score:
-                    self.standings[team_h] += 3
+                    self.standings_dict[team_h]['points'] += 3
                 elif team_h_score < team_a_score:
-                    self.standings[team_a] += 3
+                    self.standings_dict[team_a]['points'] += 3
                 else:
-                    self.standings[team_h] += 1
-                    self.standings[team_a] += 1
+                    self.standings_dict[team_h]['points'] += 1
+                    self.standings_dict[team_a]['points'] += 1
+
+            # Update team strength
+            self.standings_dict[team_h]['strength'] += team_h_difficulty
+            self.standings_dict[team_a]['strength'] += team_a_difficulty
+        
+        # TODO: Implement position calculation
+                    
+
+        # Convert standings to DataFrame
+        self.update_standings_df()
+        
+    
+    def update_standings_df(self):
+        # Convert defaultdict to DataFrame
+        data = []
+        for team_id, stats in self.standings_dict.items():
             
+            team = self.team_names.get(team_id)
+            
+            data.append({
+                'name': team.name if team else f"Team {team_id}",
+                'played': stats['played'],
+                'points': stats['points'],
+                'strength': stats['strength'],
+                'id': team_id,
+                'position': stats['position']
+            })
+        
+        # Create DataFrame
+        self.standings = pd.DataFrame(data)
+        
+        # Calculate positions
+        self.standings.sort_values(by='points', ascending=False, inplace=True)
+        self.standings.reset_index(drop=True, inplace=True)
+        self.standings['position'] = self.standings.index + 1
+    
+    def get_standings_dataframe(self):
+        return self.standings
+
+
     def game_week_iterator(self):
         return iter(self.game_weeks.values())
     

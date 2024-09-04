@@ -59,19 +59,21 @@ class StatisticsDataManager:
         
     def import_fixtures_data(self, user_name: str = None, password: str = None):
         """
-        Import data from premier leaguer fantasy API. If no log in details are provided, it will 
+        Import data from Premier League Fantasy API. If no login details are provided, it will 
         be retrieved from the environment variables <fantasy_username> and <fantasy_password>
         """
         
         self.fixtures_data = self.fantasy_api.fetch_fixtures_json()
-        self.fixtures = Fixtures(self.fixtures_data)
-        
-        # Update standings
-        current_standings = self.fixtures.standings
-        for i, team in self.standings.iterrows():
-            print(f"team id:\n{team}")
-            print(f"standings: {current_standings}\n\n")
-            self.standings.loc[self.standings['id'] == team['id'], 'points'] = current_standings[int(team['id'])]
+        self.fixtures = Fixtures(self.fixtures_data, self.teams_by_id)
+        self.standings = self.fixtures.get_standings_dataframe()
+
+        # Update teams data
+        for team_id in self.standings['id']:
+            if team_id in self.teams_by_name:
+                team_name = self.teams_by_name[team_id]
+                self.teams_by_name[team_name].played = self.standings.loc[self.standings['id'] == team_id, 'played'].values[0]
+                self.teams_by_name[team_name].points = self.standings.loc[self.standings['id'] == team_id, 'points'].values[0]
+
         # Sort standings by points
         self.standings.sort_values(by=["points"], ascending=False, inplace=True)
         
@@ -79,10 +81,9 @@ class StatisticsDataManager:
         self.standings.reset_index(drop=True, inplace=True)
         self.standings.index = range(1, len(self.standings) + 1)
         
-        # Update teams
-        for name, team in self.teams_by_name.items():
-            self.teams_by_name[name].played = current_standings[team.id]
-            self.teams_by_name[name].points = current_standings[team.id]
+        # Print debug information (optional)
+        print(f"Updated standings DataFrame:\n{self.standings}")
+
 
     def import_from_file(self, file: str):
         """

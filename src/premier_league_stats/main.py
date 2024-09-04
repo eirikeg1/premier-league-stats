@@ -29,21 +29,21 @@ class Main:
     def development_code(self):
         """changed thoughout development for testing various things"""
         # Implement debug logic
-        for i, game_week in enumerate(self.stats.game_week_iterator()):
-            print(f"Game week {i + 1}:")
-            for game in game_week:
-                print(f" * {game.id}")
-                print(f"stats: {game.stats}")
-            print("\n")
+        # for i, game_week in enumerate(self.stats.game_week_iterator()):
+        #     print(f"Game week {i + 1}:")
+        #     for game in game_week:
+        #         print(f" * {game.id}")
+        #         print(f"stats: {game.stats}")
+        #     print("\n")
         
         # Ensure the Statistics class has standings and teams_by_name attributes
         print(f"Standings:\n{self.stats.standings}\n\n")
         
-        print("Teams best performers:")
-        for team in self.stats.teams_by_name.values():
-            print(f"\n{team.name} : {len(team.players)} players")
-            for player in sorted(team.players, key=lambda p: p.stats['total_points'], reverse=True)[:5]:  # Assuming team.players is a list
-                print(f" * {player.name} : {player.stats['total_points']} total points")
+        # print("Teams best performers:")
+        # for team in self.stats.teams_by_name.values():
+        #     print(f"\n{team.name} : {len(team.players)} players")
+        #     for player in sorted(team.players, key=lambda p: p.stats['total_points'], reverse=True)[:5]:  # Assuming team.players is a list
+        #         print(f" * {player.name} : {player.stats['total_points']} total points")
    
 if __name__ == "__main__":
     main = Main()
