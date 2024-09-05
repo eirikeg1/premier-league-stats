@@ -1,3 +1,5 @@
 *.pyc
-.vscode/PythonImportHelper-v2-Completion.json
+*.egg-info
+**.__pycache__
+.venv
 *.vscode
