@@ -1,4 +1,6 @@
+import premier_league_stats.cli
 from premier_league_stats.api.PremierLeagueFantasyAPI import PremierLeagueFantasyAPI
+from premier_league_stats.cli import main
 from premier_league_stats.data_classes.News import News
 from premier_league_stats.data_classes.Player import Player
 from premier_league_stats.data_classes.Team import Team
