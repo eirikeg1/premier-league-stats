@@ -5,6 +5,9 @@ from data_classes.Fixtures import Fixtures
 import numpy as np
 import pandas as pd
 
+from src.premier_league_stats.data_processing.MatchPlayersProcessingManager import MatchPlayersProcessingManager
+from src.premier_league_stats.data_processing.MatchPlayersProcessingManager import MatchPlayersData
+
 
 class StatisticsDataManager:
     """Class for storing and manipulating statistics for the premier league"""
@@ -82,7 +85,7 @@ class StatisticsDataManager:
         self.standings.index = range(1, len(self.standings) + 1)
         
         # Print debug information (optional)
-        print(f"Updated standings DataFrame:\n{self.standings}")
+        # print(f"Updated standings DataFrame:\n{self.standings}")
 
 
     def import_from_file(self, file: str):
@@ -133,6 +136,14 @@ class StatisticsDataManager:
         ...
 
     ### Get data:
+    
+    def get_match_players_data(self, match_id: int):
+        """Return data for match and players in that match"""
+        data = MatchPlayersData(self.fixtures.games()[match_id], self.get_teams().values())
+        
+        print(f"Data: {data}")
+        # data_processor = MatchPlayersProcessingManager(match_id)
+        
 
     def get_teams(self) -> dict[Team]:
         """Return all team data. If no data is present, it will be imported from the API"""

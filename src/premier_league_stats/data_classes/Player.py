@@ -4,7 +4,6 @@ import pandas as pd
 
 from .News import News
 
-
 class Player:
     
     def __init__(
@@ -22,8 +21,7 @@ class Player:
         """
         self.id = id
         self.position = position
-        if squad_number:
-            self.squad_number = squad_number
+        self.squad_number = squad_number or 0
 
         self.news: List[News] = []
         self.name = name
@@ -36,3 +34,6 @@ class Player:
     
     def add_news(self, news, news_added):
         self.news.append(News(news, news_added))
+        
+    def __str__(self):
+        return f"{self.name} ({self.position}) - {self.team} nr: {self.squad_number}"

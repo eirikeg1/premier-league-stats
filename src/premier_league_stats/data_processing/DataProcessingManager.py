@@ -9,11 +9,11 @@ class DataProcessingManager(ABC):
     
     This includes some commonly used tools like tokenizers.
     """
-    def __init__(self, data):
+    def __init__(self, data, base_tokenizer=None):
         self.raw_data = data
         self.tokenized_data = None
         self.vectorized_data = None
-        self.base_tokenizer = None # TODO: Add default tokenizer
+        self.base_tokenizer = base_tokenizer # TODO: Add default tokenizer
     
     @abstractmethod
     def clean_data(self, cleaning_method="default"):

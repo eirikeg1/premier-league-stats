@@ -37,7 +37,10 @@ class Main:
         #     print("\n")
         
         # Ensure the Statistics class has standings and teams_by_name attributes
-        print(f"Standings:\n{self.stats.standings}\n\n")
+        # print(f"Standings:\n{self.stats.standings}\n\n")
+        
+        match_players = self.stats.get_match_players_data(0)
+        print(f"match_players: {match_players}")
         
         # print("Teams best performers:")
         # for team in self.stats.teams_by_name.values():

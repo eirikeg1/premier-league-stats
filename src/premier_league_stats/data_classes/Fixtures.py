@@ -156,3 +156,6 @@ class Fixtures:
     
     def game_iterator(self):
         return iter([game for game_week in self.game_weeks.values() for game in game_week])
+    
+    def games(self):
+        return [game for game_week in self.game_weeks.values() for game in game_week]
