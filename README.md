@@ -46,4 +46,3 @@ The project contains tests created with pytest. To run all tests runt the comman
     * For example OneFutbol's
     * Webscraping?
 * Create a user interface (webapp?) to visualize and easily use the project
-

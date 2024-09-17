@@ -33,3 +33,8 @@ class MatchPlayersProcessingManager(DataProcessingManager):
         super().__init__(data, base_tokenizer=base_tokenizer)
         self.match_data = data.match_data
         self.players = data.get_players()
+        
+    def create_data_loader()
+        ...
+        
+    
