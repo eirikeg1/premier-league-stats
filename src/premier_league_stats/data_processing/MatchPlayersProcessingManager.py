@@ -34,7 +34,6 @@ class MatchPlayersProcessingManager(DataProcessingManager):
         self.match_data = data.match_data
         self.players = data.get_players()
         
-    def create_data_loader()
+    def create_data_loader():
         ...
         
-    
